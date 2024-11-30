@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Product {
+
+
     public enum Category{
 
         Vegetables,
@@ -21,13 +23,16 @@ public class Product {
     private Category category;
     private  double price;
 
+    private boolean onSale;
+
     public Product() {
     }
 
-    public Product(String name, Category category, double price) {
+    public Product(String name, Category category, double price,boolean onSale) {
         this.name = name;
         this.category = category;
         this.price = price;
+        this.onSale = onSale;
     }
 
     public long getId() {
@@ -36,6 +41,9 @@ public class Product {
 
     public void setId(long id) {
         this.id = id;
+    }
+    public void setOnSale(boolean onSale) {
+        this.onSale = onSale;
     }
 
     public String getName() {
@@ -61,4 +69,11 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
+    public boolean isOnSale() {
+        // לוגיקה לבדיקה אם המוצר במבצע, למשל אם הקטגוריה היא מתוקים או המחיר מתחת לסכום מסוים
+        return this.category == Category.Sweets || this.price < 10.0;
+    }
+//    public boolean isOnSale() {
+//        return onSale;
+//    }
 }

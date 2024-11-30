@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+import java.time.LocalDate;
+
 @Entity
 public class Sale {
     @Id
@@ -12,6 +14,8 @@ public class Sale {
     private  Long idProduct;
     private  int quantity;
     private  double reduction;
+    private String date;
+    private LocalDate expirationDate;
 
     public Sale() {
     }

@@ -39,14 +39,14 @@ public class ProductService {
     }
 
     // שליפת מוצרים לפי קטגוריה
-    public List<Product> getProductsByCategory(String category) {
-        try {
-//            return productRepository.findByCategory(Product.Category.valueOf(category));
-            return productRepository.findByCategory(category);
-
-        }
-        catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid category: " + category);
-        }
-    }
+//    public List<Product> getProductsByCategory(String category) {
+//        try {
+////            return productRepository.findByCategory(Product.Category.valueOf(category));
+//            return productRepository.findByCategory(category);
+//
+//        }
+//        catch (IllegalArgumentException e) {
+//            throw new RuntimeException("Invalid category: " + category);
+//        }
+//    }
 }

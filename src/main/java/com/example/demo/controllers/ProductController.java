@@ -40,8 +40,8 @@ public class ProductController {
     }
 
     // שליפת מוצרים לפי קטגוריה
-    @GetMapping("/category/{category}")
-    public List<Product> getProductsByCategory(@PathVariable String category) {
-        return productService.getProductsByCategory(category);
-    }
+//    @GetMapping("/category/{category}")
+//    public List<Product> getProductsByCategory(@PathVariable String category) {
+//        return productService.getProductsByCategory(category);
+//    }
 }

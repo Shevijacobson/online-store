@@ -28,10 +28,10 @@ public class PurchaseOrderController {
     }
 
     // שליפת הזמנות לפי מזהה לקוח
-    @GetMapping("/customer/{customerId}")
-    public List<PurchaseOrder> getPurchaseOrdersByCustomerId(@PathVariable Long customerId) {
-        return purchaseOrderService.getPurchaseOrdersByCustomerId(customerId);
-    }
+//    @GetMapping("/customer/{customerId}")
+//    public List<PurchaseOrder> getPurchaseOrdersByCustomerId(@PathVariable Long customerId) {
+//        return purchaseOrderService.getPurchaseOrdersByCustomerId(customerId);
+//    }
 
     // שליפת הזמנות לפי תאריך
     @GetMapping("/date/{date}")
@@ -50,4 +50,23 @@ public class PurchaseOrderController {
     public PurchaseOrder updatePurchaseOrder(@PathVariable Long id, @RequestBody PurchaseOrder purchaseOrder) {
         return purchaseOrderService.updatePurchaseOrder(id, purchaseOrder);
     }
+
+    @GetMapping("/customer/{customerId}")
+    public List<PurchaseOrder> getOrdersByCustomerId(@PathVariable Long customerId) {
+        return purchaseOrderService.getPurchaseOrdersByCustomerId(customerId);
+    }
+    @GetMapping("/date-range")
+    public List<PurchaseOrder> getOrdersByDateRange(@RequestParam String startDate, @RequestParam String endDate) {
+        return purchaseOrderService.getPurchaseOrdersByDateRange(startDate, endDate);
+    }
+
+    @GetMapping("/{id}/calculate-final-price")
+    public double calculateFinalPrice(@PathVariable Long id) {
+        return purchaseOrderService.getPurchaseOrderById(id)
+                .map(purchaseOrderService::calculateFinalPrice)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+    }
+
+
+
 }

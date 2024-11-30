@@ -1,9 +1,6 @@
 package com.example.demo.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +14,14 @@ import java.util.List;
         private long id;
         @OneToMany
         private List<ItemOrder> orderList= new ArrayList<>();
-        private double finalPrice;
+        @ManyToOne
+        private Customer customer;
 
+        private double finalPrice;
+        private String date;
         public PurchaseOrder(){}
 
-        public PurchaseOrder(List<ItemOrder> orderList, double finalPrice) {
+        public PurchaseOrder(List<ItemOrder> orderList, double finalPrice,String date) {
             this.orderList = orderList;
             this.finalPrice = finalPrice;
         }
@@ -29,7 +29,7 @@ import java.util.List;
         public void setId(long id) {
             this.id = id;
         }
-
+        public  void  setDate(String date){ this.date=date;}
         public void setOrderList(List<ItemOrder> orderList) {
             this.orderList = orderList;
         }
@@ -50,6 +50,6 @@ import java.util.List;
             return finalPrice;
         }
 
-
+        public  String  getDate(){return date;}
 
 }
